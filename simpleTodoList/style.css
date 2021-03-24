@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(140deg, #b6b7f8, #fa5ccc);
+    font-family: 'Kiwi Maru', sans-serif;
+    min-height: 100vh;
+}
+
+header {
+    font-size: 1.5rem;
+}
+
+header,
+form {
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form input, form button{
+    padding : 0.5rem;
+    font-size: 2rem;
+    border: none;
+    background: white;
+    font-family: 'Kiwi Maru', sans-serif;
+}
+
+form input {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+form button {
+    color: #fa5ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+form button:hover{
+    color: #b6b7f8;
+}
+
+.todo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-list {
+    min-width: 30%;
+    list-style: none;
+}
+
+.todo {
+    margin: 0.5rem;
+    background: white;
+    color: black;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todo li {
+    /* push all buttons to the end*/
+    flex: 1;
+}
+
+.delete-btn, .complete-btn {
+    background: #b6b7f8;
+    color: white;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.delete-btn {
+    background: #fa5ccc;
+}
+
+.todo-item {
+    padding: 0rem 0.5rem;
+}
+
+.fa-trash, .fa-check{
+    pointer-events: none;
+}
