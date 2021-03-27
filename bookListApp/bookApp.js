@@ -31,15 +31,32 @@ class UI {
         const list = document.querySelector('#book-list');
 
         const row = document.createElement('tr');
-        row.innerHTML = //'
-        //<td>${book.title}</td>
-        //<td>${book.author}</td>
-        //<td>${book.isbn}</td>
-        //<td><a href="#" class="btn btn-outline-primary btn-sm delete">X</a></td>
-        //';
-        '<td>${book.title}</td><td>${book.author}</td><td>${book.isbn}</td><td><a href="#" class="btn btn-outline-primary btn-sm delete">X</a></td>';
-        
+        row.innerHTML = `
+        <td>${book.title}</td>
+        <td>${book.author}</td>
+        <td>${book.isbn}</td>
+        <td><a href="#" class="btn btn-outline-primary btn-sm delete">X</a></td>
+        `;
+       
         list.appendChild(row);
+    }
+
+    static deleteBook(el) {
+        if(el.classList.contains('delete')){
+            el.parentElement.parentElement.remove();
+        }
+    }
+
+    static showAlert(message, className) {
+        const div = document.createElement('div');
+        div.className = `alert alert-${className}`;
+        div.appendChild(document.createTextNode(message));
+        const container = document.querySelector('.container');
+        const form = document.querySelector('#book-form');
+        container.insertBefore(div, form);
+        //Vanish in 2 sec
+        setTimeout(()=> document.querySelector('.alert').remove(),
+        2000);
     }
 
     static clearField() {
@@ -61,17 +78,27 @@ document.querySelector('#book-form').addEventListener('submit',(e) => {
         const author = document.querySelector('#author').value;
         const isbn = document.querySelector('#isbn').value;
 
-        //Instatiate book
-        const book = new Book(title, author, isbn);
+        //Validate
+        if(title===''||author===''||isbn===''){
+            UI.showAlert('Please fill in all fields','danger');
+        }else{
+            //Instatiate book
+             const book = new Book(title, author, isbn);
 
-        //console.log(book);
+            //console.log(book);
 
-        //Add book to UI
-        UI.addBookToList(book);
+            //Add book to UI
+            UI.addBookToList(book);
 
-        //Clear Field
-        UI.clearField();
+            //Clear Field
+            UI.clearField();
+
+            UI.showAlert('The book has been successfully registered','success');
+        }
 
     });
 
 //Event : Remove a Book
+document.querySelector('#book-list').addEventListener('click',(e) => { 
+    UI.deleteBook(e.target)
+});
