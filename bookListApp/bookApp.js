@@ -14,11 +14,6 @@ class UI {
                 title : 'Harry Potter',
                 author : 'J.K Rowling',
                 isbn : '123456'
-            },
-            {
-                title : 'The Vegetarian',
-                author : 'Han Kang',
-                isbn : '987654'
             }
         ];
 
@@ -137,7 +132,5 @@ document.querySelector('#book-list').addEventListener('click',(e) => {
     
     //Remove book from Storage
     Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
-    console.log(e.target.parentElement.previousElementSibling.textContent);
-
     UI.showAlert('The book has been removed','warning');
 });
