@@ -38,11 +38,38 @@
         let factText = document.querySelector('#factText');
 
         let numInput = document.querySelector('#numInput');
-        numInput.addEventListener('input',getFactAjax);
+        numInput.addEventListener('input',getFactFetch);
 
-        function getFactAjax(){
-            let number = numInput.value;
+        // function getFactAjax(){
+        //     let number = numInput.value;
+
+        //     let xhr = new XMLHttpRequest();
+        //     xhr.open('GET','http://numberapi.com/'+number);
+
+        //     xhr.onload = function(){
+        //         if(this.status==200 && number != ''){
+        //             console.log(this.responseText);
+        //             fact.style.display = 'block';
+        //             factText.innerText = this.responseText;
+        //         }
+        //     }
+
+        //     xhr.send();
             
+        // }
+
+        function getFactFetch(){
+            let number = numInput.value;
+
+            fetch('http://numberapi.com/'+number)
+            .then(response => response.text()) //response.JSON()
+            .then(data => {
+                if(number != ''){
+                    fact.style.display = 'block';
+                    factText.innerText = data; 
+                }
+            })
+            .catch(err=> console.log(err));
         }
     </script>
 </body>
