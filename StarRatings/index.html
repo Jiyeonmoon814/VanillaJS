@@ -39,7 +39,20 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container mt-5">
+        <div class="form-group">
+            <select id="product-select" class="form-control custom-select">
+                <option value="0" disabled selected>Select Product</option>
+                <option value="samsung">Samsung 4K TV</option>
+                <option value="sony">Sony 4K TV</option>
+                <option value="lg">LG 4K TV</option>
+                <option value="phillips">Phillips 4K TV</option>
+                <option value="hwawei">Hwawei 4K TV</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="number" id="rating-control" class="form-control" step="0.1" max="5" placeholder="Rate 1-5" disabled>
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
