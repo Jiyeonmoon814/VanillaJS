@@ -8,7 +8,35 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Star Ratings</title>
-    
+    <style>
+        .stars-outer {
+            position: relative;
+            display: inline-block;
+        }
+
+        .stars-inner {
+            position: absolute;
+            top : 0;
+            left : 0;
+            white-space : nowrap;
+            overflow : hidden;
+            width: 0;
+        }
+
+        .stars-outer::before {
+            content: "\f005 \f005 \f005 \f005 \f005"; /*use unicode from fontawesome*/
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color : #ccc;
+        }
+
+        .stars-inner::before {
+            content: "\f005 \f005 \f005 \f005 \f005"; /*use unicode from fontawesome*/
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color : #f8c20b;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
