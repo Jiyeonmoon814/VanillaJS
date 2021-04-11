@@ -30,3 +30,27 @@ h2 {
     color: #aaa;
 }
 
+@media(min-width:1200px){
+    h1{
+        font-size: 5rem;
+    }
+}
+
+@media(min-width:800px){
+    .container {
+        padding : 0.1rem;
+    }
+    
+    h1{
+        font-size: 3rem;
+    }
+}
+
+@media(min-width:500px){
+    h1{
+        font-size: 2.5rem;
+    }
+    h2{
+        font-size:1.5rem;
+    }
+}
