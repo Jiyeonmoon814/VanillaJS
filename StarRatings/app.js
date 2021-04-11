@@ -32,9 +32,9 @@ productSelect.addEventListener('change',(e) => {
 //Rating Control change
 ratingControl.addEventListener('blur',(e)=> {
     const rating = e.target.value;
-
+    //blur -->event 해제 시 발생, focusout은 event bubbling 이 발생하지만 blur는 발생하지 않음 (child에만 event 해제)
     //Make sure 5 or under
-    if(rating > 5) {
+    if(rating > 5) {    
         alert('Please rate 1 - 5');
         return;
     }
