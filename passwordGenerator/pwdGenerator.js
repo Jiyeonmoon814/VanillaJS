@@ -27,6 +27,23 @@ generateEl.addEventListener('click',()=>{
     resultEl.innerText=generatePassword(hasLower,hasUpper,hasNumber,hasSymbol,length);
 })
 
+//Copy pwd to clipboard eventListener
+clipboardEl.addEventListener('click',()=>{
+    const textarea = document.createElement('textarea');
+    const pwd = resultEl.innerText;
+
+    if(!pwd){
+        return;
+    }
+
+    textarea.value = pwd;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    textarea.remove();
+    alert('Passwoard copied to clipboard!')
+})
+
 //Generate password function 
 function generatePassword(lower,upper,number,symbol,length){
     //1.Init pwd var 
@@ -51,7 +68,8 @@ function generatePassword(lower,upper,number,symbol,length){
     const finalPwd = generatedPwd.slice(0,length);
     return finalPwd;
 }
-//Functions 
+
+
 //Generator random lower,uppercase,numbers and symbols
 //from character set (such as a>>97,A>>65)
 function getRandomLower(){
