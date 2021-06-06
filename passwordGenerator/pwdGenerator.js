@@ -15,6 +15,19 @@ const randomFunc = {
     symbol: getRandomSymbol
 }
 
+//eventListeners 
+generateEl.addEventListener('click',()=>{
+    //set type of lngth as a number by adding + 
+    const length = +lengthEl.value;
+    const hasLower = lowercaseEl.checked;
+    const hasUpper = uppercaseEl.checked;
+    const hasNumber = numbersEl.checked;
+    const hasSymbol = symbolsEl.checked;
+    
+    resultEl.innerText=generatePassword(hasLower,hasUpper,hasNumber,hasSymbol,length);
+})
+
+//Functions 
 //Generator random lower,uppercase,numbers and symbols
 //from character set (such as a>>97,A>>65)
 function getRandomLower(){
