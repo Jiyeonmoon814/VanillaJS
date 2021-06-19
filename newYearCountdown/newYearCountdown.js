@@ -36,4 +36,6 @@ setTimeout(() => {
 }, 1000);
 
 // Run every second
+//repeatedly calls a function or executes a code snippedt
+//with a fixed time delay between each call. 
 setInterval(updateCountdown, 1000)
