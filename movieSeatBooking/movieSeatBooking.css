@@ -66,6 +66,7 @@ body {
     cursor: pointer;
     transform: scale(1.2);
 }
+
 .showcase .seat:not(.occupied):hover {
     cursor: default;
     transform: scale(1);
