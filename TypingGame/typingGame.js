@@ -78,6 +78,27 @@ function updateScore(){
     scoreEl.innerHTML = score;
 }
 
+// Update time
+function updateTime(){
+    time--;
+    timeEl.innerHTML = time + 's';
+
+    if(time===0){
+        clearInterval(timeInterval);
+        gameOver();
+    }
+}
+
+function gameOver(){
+    endgameEl.innerHTML = `
+        <h1>Time ran out</h1>
+        <p>Your final score is ${score}</p>
+        <button onclick="location.reload()">Reload</button>
+    `;
+
+    endgameEl.style.display='flex';
+}
+
 // Evnet Listeners 
 text.addEventListener('input', e => {
     const insertedText = e.target.value;
@@ -85,7 +106,32 @@ text.addEventListener('input', e => {
     if(insertedText === randomWord) {
         addWordToDOM();
         updateScore();
+
+         //Clear input
+        e.target.value='';
+
+        if(difficulty==='hard'){
+            time += 2;
+        }else if(difficulty === 'medium'){
+            time += 3;
+        }else {
+            time += 5;
+        }
+
+        updateTime();
     }
+});
+
+//Settings btn click
+settingsBtn.addEventListener('click',()=>
+    settings.classList.toggle('hide')
+);
+
+//Setting select
+settingsForm.addEventListener('change', e => {
+    difficulty = e.target.value;
+    localStorage.setItem('difficulty', difficulty)
 })
+
 
 
