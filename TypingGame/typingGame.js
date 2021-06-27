@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded',addWordToDOM);
+
 const word = document.getElementById('word');
 const text = document.getElementById('text');
 const scoreEl = document.getElementById('score');
@@ -54,7 +56,36 @@ difficultySelect.value = localStorage.getItem('difficulty') !== null
 //Focus on text on start 
 text.focus();
 
+
+// Functions 
 //Start counting down 
 const timeInterval = setInterval(updateTime, 1000);
+
+// Generate random word from array 
+function getRandomWord(){
+    return words[Math.floor(Math.random()*words.length)]
+}
+
+// Add word to DOM 
+function addWordToDOM() {
+    randomWord = getRandomWord();
+    word.innerHTML = randomWord;
+}
+
+// Update score
+function updateScore(){
+    score++;
+    scoreEl.innerHTML = score;
+}
+
+// Evnet Listeners 
+text.addEventListener('input', e => {
+    const insertedText = e.target.value;
+
+    if(insertedText === randomWord) {
+        addWordToDOM();
+        updateScore();
+    }
+})
 
 
