@@ -91,7 +91,7 @@ body {
 }
 
 .text-lose {
-    color: var(--win-lose);
+    color: var(--lose-color);
 }
 @media(max-width:700px) {
     .choice {
