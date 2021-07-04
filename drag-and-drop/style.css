@@ -1,21 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background:paleturquoise;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
 }
 
 .fill {
     background-image: url('http://source.unsplash.com/random/150x150');
-    position: relative;
-    height: 150px;
-    width: 150px;
-    top: 5px;
-    left: 5px;
+    height: 145px;
+    width: 145px;
     cursor: pointer;
 }
 
 .empty {
-    display: inline-block;
-    height: 160px;
-    width: 160px;
+    height: 150px;
+    width: 150px;
     margin: 10px;
     background-color: #fff;
     border: 3px black solid;
@@ -26,10 +32,13 @@ body {
 }
 
 .hovered {
-    background: #f4f4f4;
+    background: #333;
+    border-color: #fff;
     border-style: dashed;
 }
 
-.invisible {
-    display: none;
+@media(max-width: 800px){
+    body {
+        flex-direction: column;
+    }
 }
