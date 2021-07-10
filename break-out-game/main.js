@@ -12,6 +12,7 @@
 11.Increase score when bricks break
 12.Lose - redraw bricks, reset score 
 */ 
+
 document.addEventListener('DOMContentLoaded',update)
 
 const rulesBtn = document.getElementById('rules-btn')
@@ -20,7 +21,7 @@ const rules = document.getElementById('rules')
 const canvas = document.getElementById('canvas')
 const ctx = canvas.getContext('2d')
 
-let score = 0
+let score = 0;
 
 const brickRowCount = 9;
 const brickColumnCount = 5;
@@ -33,7 +34,8 @@ const ball = {
     size: 10,
     speed: 4,
     dx : 4,
-    dy : -4,
+    dy : -4, //dx, dy are the x&y-asix coordinate in the destination canvas
+             //at which to place the top-left corner of the source image 
     visible : true
 }
 
@@ -71,8 +73,8 @@ for(let i=0; i<brickRowCount; i++){
 
 //Draw ball on canvas 
 function drawBall() {
-    ctx.beginPath();
-    ctx.arc(ball.x, ball.y, ball.size, 0, Math.PI * 2);
+    ctx.beginPath(); //canvas 2d api starts a new path by emptying the list of sub-paths
+    ctx.arc(ball.x, ball.y, ball.size, 0, Math.PI * 2); //add a circular to the current sub-path
     ctx.fillStyle = paddle.visible ? '#0095dd' : 'transparent';
     ctx.fill();
     ctx.closePath();
@@ -82,7 +84,8 @@ function drawBall() {
 //Draw paddle on canvas
 function drawPaddle() {
     ctx.beginPath();
-    ctx.rect(paddle.x, paddle.y,paddle.w,paddle.h);
+    ctx.rect(paddle.x, paddle.y,paddle.w,paddle.h); // add a rectangle to the current path
+    //this method does not directly render anything. To draw the rectangle onto a canvas, you can use the fill() or stroke() 
     ctx.fillStyle = paddle.visible ? '#0095dd' : 'transparent';
     ctx.fill();
     ctx.closePath();
@@ -103,8 +106,8 @@ function drawBricks() {
 
 //Draw score on canvas
 function drawScore(){
-    ctx.font = '20px Arial'
-    ctx.fillText =(`Score:${score}`, canvas.width - 100, 30)
+    ctx.font = '20px Arial';
+    ctx.fillText(`Score: ${score}`, canvas.width - 100, 30);
 }
 
 //Move paddle on canvas 
