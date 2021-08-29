@@ -17,7 +17,7 @@ let currentActiveCard = 0
 const cardsEl = []
 
 //Store card data
-//const cardsData = getCardsData()
+const cardsData = getCardsData()
 
 //Create all cards
 function createCards() {
@@ -53,7 +53,18 @@ function createCard(data, index){
 
     cardsContainer.appendChild(card)
 
-    //updateCurrentText()
+    updateCurrentText()
+}
+
+// Show number of cards
+function updateCurrentText() {
+    currentEl.innerText = `${currentActiveCard + 1 }/${cardsEl.length}`
+}
+
+// Get Cards from local storage
+function getCardsData() {
+    const cards = JSON.parse(localStorage.getItem('cards'))
+    return cards === null ? [] : cards
 }
 
 //Add card to local storage
@@ -61,6 +72,8 @@ function setCardsData(cards) {
     localStorage.setItem('cards', JSON.stringify(cards))
     window.location.reload()
 }
+
+createCards()
 
 //Event Listeners 
 //Show add container 
