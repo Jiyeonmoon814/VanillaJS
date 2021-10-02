@@ -6,6 +6,13 @@ let limit = 5
 let page = 1
 
 document.addEventListener('DOMContentLoaded',() => showPosts())
+window.addEventListener('scroll', () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement
+
+    if(scrollHeight - scrollTop === clientHeight){
+        showLoading()
+    }
+})
 
 // Fetch posts from API
 async function getPosts() {
@@ -35,4 +42,18 @@ async function showPosts() {
 
         postContainer.appendChild(postEl)
     })
+}
+
+//show and fetch more posts 
+function showLoading() {
+    loading.classList.add('show')
+
+    setTimeout(() => {
+        loading.classList.remove('show')
+
+        setTimeout(() => {
+            page++
+            showPosts()
+        },300)
+    }, 1000)
 }
