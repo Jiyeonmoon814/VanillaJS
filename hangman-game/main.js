@@ -31,7 +31,7 @@ const displayWord = () => {
     `
     
     console.log(selectedWord)
-    
+
     const innerWord = wordEl.innerText.replace(/[ \n]/g, '')
     
     if(innerWord === selectedWord) {
@@ -42,7 +42,32 @@ const displayWord = () => {
 
 // Update the wrong letters 
 const updateWrongLettersEl = () => {
+    // Display wrong letters 
+    wrongLettersEl.innerHTML = `
+    ${wrongLetters.length > 0 ? '<p>Wrong</p>' : ''}
+    ${wrongLetters.map(letter => `<span>${letter}</span>`)}
+    `
 
+    // Display parts 
+    figureParts.forEach(( part, idx ) => {
+        const errors = wrongLetters.length 
+
+        if(idx < errors){
+            part.style.display = 'block'
+        }else {
+            part.style.display = 'none'
+        }
+    })
+
+    // Check if lost 
+    if(wrongLetters.length === figureParts.length) {
+        finalMessage.innerText = 'Unfortunately you lost.'
+
+        finalMessageRevealWord.innerText = `The word was : ${selectedWord}`
+        popup.style.display = 'flex'
+
+        playable = false
+    }
 }
 
 // Show notification
@@ -62,7 +87,17 @@ window.addEventListener('keydown', e => {
                     correctLetters.push(letter)
 
                     displayWord()
-                }        
+                }else{
+                    showNotification()
+                }     
+            } else{
+                if(!wrongLetters.includes(letter)){
+                    wrongLetters.push(letter)
+
+                    updateWrongLettersEl()
+                }else {
+                    showNotification()
+                }
             }
         }
     }
