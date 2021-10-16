@@ -22,7 +22,7 @@ const displayWord = () => {
     wordEl.innerHTML = `
     ${selectedWord.split('').map(letter => 
         `<span class="letter">
-        ${correctLetters.includes(letter) ? letter : ''}
+        ${correctLetters.includes(letter) ? letter : '' }
         </span>
         `
         ).join('')
@@ -35,9 +35,12 @@ const displayWord = () => {
     const innerWord = wordEl.innerText.replace(/[ \n]/g, '')
     
     if(innerWord === selectedWord) {
+        finalMessage.innerText = 'Congratulations! You Won'
+        finalMessageRevealWord.innerText = ''
+        popup.style.display = 'flex'
 
-    }
-    
+        playable = false
+    }    
 }
 
 // Update the wrong letters 
@@ -72,11 +75,15 @@ const updateWrongLettersEl = () => {
 
 // Show notification
 const showNotification = () => {
-
+    notification.classList.add('show')
+    
+    setTimeout(() => {
+        notification.classList.remove('show')
+    },2000)
 }
 
 document.addEventListener('DOMContentLoaded', displayWord())
-
+// Keydown letters event
 window.addEventListener('keydown', e => {
     if(playable) {
         if(e.keyCode >= 65 && e.keyCode <= 90){
@@ -102,4 +109,19 @@ window.addEventListener('keydown', e => {
         }
     }
 })
-// Keydonwn letter press 
+
+// Play Again event 
+playAgainBtn.addEventListener('click', () => {
+    playable = true 
+
+    // Empty arrays 
+    correctLetters.splice(0)
+    wrongLetters.splice(0)
+
+    selectedWord = words[Math.floor(Math.random() * words.length)]
+
+    displayWord()
+    updateWrongLettersEl()
+
+    popup.style.display = 'none'
+})
