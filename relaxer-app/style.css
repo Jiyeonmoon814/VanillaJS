@@ -85,11 +85,11 @@ body {
 
 @keyframes grow {
     from {
-        transfrom: scale(1)
+        transform: scale(1)
     }
 
     to {
-        transfrom: scale(1.2)
+        transform: scale(1.2)
     }
 }
 
